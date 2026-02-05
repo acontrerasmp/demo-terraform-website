@@ -13,6 +13,7 @@ basically each time that the app will be updated the content of the S3 bucket wi
 
 thats it!
 i used the terraform aws modules to simplify the code
+![website-s3-with-cloudfront](docs/imgs/website-s3-with-cloudfront.png)
 
 
 ### GitHub Actions CI/CD
@@ -23,6 +24,7 @@ and another one that deploys the infrastructure via terraform using tofu action
 i didnt test it so i just created a simple mock of the idea and structure that i will follow
 also the terraform backend and iam role to assume when deploying is not specified in the code but i will use s3 backend encrypted with a custom kms key, the Key policy will allow the role to encrypt,decrypt the state via s3. so its a double layer of security above the s3 permissions. the iam role will be assumed via github oidc provider from the github actions workflow.
 
+
 ## option 2: website-amplify-app
 
 module not finished yet.
@@ -30,6 +32,7 @@ https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ampl
 i feel like is one of those services that is not worth the hassle and complexity of managing via terraform.
 
 
-## option 3: webiste hosted on ecs fargate behind alb and cloudfront
+## option 3: website-ecs-alb-cloudfront
 not implemented yet.
 the idea is to have a container running the frontend app  in a private subnet behind an application load balancer and cloudfront in front of it as the cdn.
+![website-ecs-alb-cloudfront](docs/imgs/website-ecs-with-alb.png)
